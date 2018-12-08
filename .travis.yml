@@ -1,5 +1,9 @@
 ---
 
+env:
+  global:
+    secure: "e19IwDjs6ZhPITyjm8bHz/8w2yDun/rSQqdGCK9wvRw2HQ0sy+2VcYkw46R6ByjlzMDfANtBgUjBC1NIi+Q5XxeIldbUsu4SM+/YXT9U6Zy8p+3RwzweVK6IE7Y9xCHCzGTRe9hNmgZMUKpYfplTwpxKJ75FGLa1Jl3TBQXSrD0+seH22sq4ONLY/+XU0IYDtkCNAEoFcQtujOpO3opLzQmpEQmens/ZkEhG82rCA3oZw/Tb/Z+X8CUEjAoTJA/oyBzWsOrKaT+DPbpvGwN9q+vXHdgdU3q6bRLygT88Vz5jr6rTiOvLMeWVjpRvW//k+vY5Y67U4tqME2D7atNr2l+cW+BVBIooU9e8RVWu+cOQCMU5cEhN7n3lvbDeGdBzWSSaQBfR0sGhMpRFZL5V+h3YZMUJdXLkgzzS4tS9Q3eXrpSvcgLZcbFnrtIXl8hRUwDaqOIxAo9aw34EyKPvSXdtn6ntmsczRK+7pDgl68biKulJfdABTJH4CE60xFkEl/iXXEHI31QjlY790IwNkIO04qJyV+1BcUM7nkb+MS43VkkolnssfZwNZf2+LXjMkKJApnt39uggdrpbK7sSHKa+PTEYv9JaXqL+JLVW9ZxCTBcf7nP/+yg5wPJC6InsWVgUyN4fz77tJ564VN5iM/wj+csZhCflvCJSNO+LJvw="
+
 language: ruby
 
 rvm:
@@ -15,4 +19,13 @@ cache:
   directories:
     - vendor/bundle
 
-script: bundle exec rspec
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  - bundle exec rspec
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
