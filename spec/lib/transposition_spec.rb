@@ -10,7 +10,7 @@ RSpec.describe Transposition do
 
   describe ".decrypt" do
     it "復号テスト" do
-      expect(Transposition.encrypt("badce")).to eq("abcde")
+      expect(Transposition.decrypt("badce")).to eq("abcde")
     end
   end
 end
