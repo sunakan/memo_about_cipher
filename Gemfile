@@ -11,3 +11,5 @@ gem 'travis'
 
 # CodeClimateでテストカバレッジ表示に必要
 gem 'simplecov'
+
+gem 'rubocop'
