@@ -1,0 +1,11 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    #command: /bin/bash
+    command: rspec
+    volumes:
+      - .:/memo_about_cipher
+#    tty: true
