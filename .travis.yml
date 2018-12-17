@@ -6,9 +6,6 @@ env:
 
 language: ruby
 
-services:
-  - docker
-
 rvm:
   - 2.2
   - 2.3
@@ -28,7 +25,7 @@ before_script:
   - ./cc-test-reporter before-build
 
 script:
-  - docker-compose up
+  - bundle exec rspec
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
